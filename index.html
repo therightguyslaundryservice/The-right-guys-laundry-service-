@@ -27,31 +27,39 @@
         /* Header & Navigation */
         header {
             background: var(--white);
-            padding: 15px 5%;
+            padding: 20px 5%;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column; /* Stacks logo on top of tabs */
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            gap: 15px; /* Space between logo and nav */
         }
 
         .logo {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             font-weight: 900;
             color: var(--primary-blue);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             display: flex;
+            flex-direction: row; /* Ensures letters/icon are horizontal */
             align-items: center;
             gap: 8px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
         }
 
         nav a {
             text-decoration: none;
             color: var(--text);
-            margin-left: 20px;
+            margin: 0 15px;
             font-weight: 600;
             font-size: 0.85rem;
         }
@@ -153,6 +161,58 @@
             justify-content: center;
         }
 
+        /* Subscription Section */
+        #pricing {
+            padding: 80px 20px;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .pricing-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 40px auto 0;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid #eef2f7;
+            border-radius: 30px;
+            padding: 40px;
+            width: 300px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary-blue);
+            position: relative;
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(0,102,204,0.1);
+        }
+
+        .featured-tag {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-blue);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+        }
+
+        .price-val {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--dark-blue);
+            margin: 15px 0;
+        }
+
         /* Contact Section */
         #contact {
             padding: 80px 20px;
@@ -186,10 +246,27 @@
             background: #f8fafc;
         }
 
+        /* Styling for the terms and conditions box */
+        .legal-box {
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: left;
+            background: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #eef2f7;
+            height: 120px;
+            overflow-y: auto;
+            font-size: 0.75rem;
+            color: #636e72;
+            line-height: 1.5;
+        }
+
         @media (max-width: 600px) {
             .hero h1 { font-size: 2rem; }
             header { padding: 15px 20px; }
-            nav a { margin-left: 10px; font-size: 0.75rem; }
+            nav a { margin: 0 10px; font-size: 0.75rem; }
+            .pricing-card.featured { transform: scale(1); }
         }
     </style>
 </head>
@@ -206,26 +283,32 @@
         <nav>
             <a href="#about">About</a>
             <a href="#services">Services</a>
+            <a href="#pricing">Subscription</a>
             <a href="#footer">Contact</a>
         </nav>
     </header>
 
     <section class="hero">
         <h1>Spend more time with family, <br>less time in traffic.</h1>
-        <p>Already washed and folded? We’ll pick it up from the cleaner and bring it straight to your door. Simple, friendly, and reliable.</p>
+        <p>We offer comprehensive wash and fold service. We’ll pick up your laundry and bring it straight back to your door, perfectly clean. Simple, friendly, and reliable.</p>
         
         <div class="price-badge">
-            <span>ONE FLAT FEE</span>
-            <strong>$25.00</strong>
+            <span>DELIVERY/WASH & FOLD RATE</span>
+            <strong>$25 Delivery Fee + $2.50/lb</strong>
+        </div>
+
+        <p style="font-size: 1rem; color: var(--primary-blue); font-weight: bold; margin-top: 20px;">Same Day Emergency Wash & Fold Service Available!</p>
+        
+        <div style="margin-top: 20px;">
+            <a href="https://therightguyslaundryservice.github.io/Book-Service-Quote-/" target="_blank" class="cta-button">Schedule Pick Up & Drop Off</a>
         </div>
     </section>
 
     <section id="about">
         <div class="family-card">
-            <h2>The Friendly Logistics Bridge</h2>
-            <a href="tel:1234567890" class="cta-button" style="margin-bottom: 25px;">Schedule Pick Up & Drop Off</a>
-            <p><strong>The Right Guys Laundry Service</strong>  <strong></strong> is here to make NYC life just a little bit easier for busy families. We specialize exclusively in the safe transport of your finished laundry. We don't wash or fold—we simply provide a reliable way to get your clean clothes home from the cleaners.</p>
-            <p style="font-weight: 700; color: var(--primary-blue);">No Hidden Fees. No Per Pound Fees. No Surprise Costs. Just One Flat Price.</p>
+            <h2>The Friendly Laundry Solution</h2>
+            <p><strong>The Right Guys Laundry Service</strong> is here to make NYC life just a little bit easier for busy families. We offer comprehensive wash and fold service including safe transport. We handle the dirty work so you can simply enjoy fresh, clean clothes delivered right to your door.</p>
+            <p style="font-weight: 700; color: var(--primary-blue);">$2.50 Per Pound + $25.00 Flat Delivery Fee. No Surprise Costs.</p>
         </div>
     </section>
 
@@ -238,8 +321,8 @@
                         <polyline points="9 22 9 12 15 12 15 22"></polyline>
                     </svg>
                 </div>
-                <h3>Door-to-Door Delivery</h3>
-                <p>From the cleaner's counter to your front door. We handle the pickup so you can stay home with the kids.</p>
+                <h3>Full Wash & Fold</h3>
+                <p>Expert care for your everyday laundry. We wash, dry, and fold with the same care you would at home.</p>
             </div>
             <div class="service-item">
                 <div class="icon-svg">
@@ -266,20 +349,58 @@
         </div>
     </section>
 
+    <section id="pricing">
+        <h2>Flexible Options</h2>
+        <p>Choose the plan that fits your family's needs.</p>
+        <div class="pricing-container">
+            <div class="pricing-card">
+                <h3>Pay As You Go (24 hour advance scheduling required.)</h3>
+                <div class="price-val">$25.00</div>
+                <p>Delivery Fee + $2.50/lb</p>
+                <ul style="list-style: none; padding: 0; font-size: 0.9rem; color: #636e72;">
+                    <li>✓ No commitment</li>
+                    <li>✓ Complete Wash & Fold</li>
+                    <li>✓ For busy professionals & families</li>
+                </ul>
+            </div>
+            <div class="pricing-card featured">
+                <div class="featured-tag">BEST VALUE</div>
+                <h3>Monthly Subscription (Save 20%. Automatic billing required.)</h3>
+                <div class="price-val">$325.00/Mo</div>
+                <p>Includes up to 100 pounds of wash & fold service/month or up to 5 service requests, whichever comes first. (Laundry weight charged at $2.00/lb + $20 delivery fee)</p>
+                <ul style="list-style: none; padding: 0; font-size: 0.9rem; color: #636e72; margin-bottom: 25px;">
+                    <li>✓ <strong>Save 20% on delivery/wash & fold and 50% on emergency service.</strong></li>
+                    <li>✓ Priority scheduling</li>
+                    <li>✓ Cashless Payment</li>
+                    <li>✓ Perfect for busy families</li>
+                </ul>
+                <a href="#" class="cta-button" style="background: var(--primary-blue); font-size: 0.9rem; padding: 15px 30px;">Buy Now</a>
+            </div>
+        </div>
+    </section>
+
     <section id="contact">
         <h2>Ready to simplify your day?</h2>
-        <p>Give us a call or send a text to get started.</p>
-        <a href="tel:1234567890" class="cta-button">Schedule Pick Up & Drop Off</a>
+        <p>We're ready to take the laundry off your hands.</p>
+        <a href="https://therightguyslaundryservice.github.io/Book-Service-Quote-/" target="_blank" class="cta-button">Schedule Pick Up & Drop Off</a>
         <div style="margin-top: 25px; font-weight: 700; color: var(--primary-blue);">
-            NYC Flat Rate: $25.00
+            NYC Wash & Fold: $2.50/lb + $25.00 Delivery
         </div>
     </section>
 
     <footer id="footer">
         <p style="margin-bottom: 10px; font-weight: bold; color: var(--dark-blue);">therightguyslaundry@gmail.com</p>
+        
+        <div class="legal-box">
+            <strong>Terms & Conditions and Privacy Policy</strong><br>
+            <em>Last Updated: April 2026</em><br><br>
+            <strong>Privacy Policy:</strong> We collect personal information (such as name, address, phone number, and email) strictly for the purpose of scheduling and executing your laundry service. We do not sell, rent, or distribute your data to unauthorized third parties. All personal data is securely managed and used solely for communication regarding your order.<br><br>
+            <strong>Terms & Conditions:</strong> By scheduling a service, you agree to our standard pickup and delivery terms. Standard services require a 24-hour advance booking. Estimated prices are subject to change based on the final weighed amount of your laundry and any additional requested services upon inspection. The Right Guys Laundry Service is not liable for items left in pockets, existing damage, color bleeding, or normal wear and tear that occurs during standard washing and folding procedures. Final payment is due at the time of pick up or as agreed upon under a subscription. For any disputes or detailed inquiries regarding these policies, please reach out to us at therightguyslaundry@gmail.com.
+        </div>
+
         &copy; 2026 The Right Guys Laundry Service | Proudly Serving NYC Families<br>
         Simple. Friendly. Done Right.
     </footer>
 
 </body>
-</html>```
+</html>
